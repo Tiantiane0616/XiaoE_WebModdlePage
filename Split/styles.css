@@ -1,0 +1,200 @@
+/* 全局变量定义 */
+:root {
+    --primary: #a78bfa;
+    --primary-hover: #8b5cf6;
+    --surface: rgba(17, 24, 39, 0.85);
+    --text: rgba(255,255,255,0.95);
+    --radius: 20px;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --gradient: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+}
+
+/* 动态背景层样式 */
+body {
+    font-family: 'Inter Variable', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: 
+        linear-gradient(45deg, rgba(15,23,42,0.9), rgba(30,41,59,0.7)),
+        url('bg2.png') center/cover fixed;
+    color: var(--text);
+    position: relative;
+}
+
+/* 粒子遮罩层样式 */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.4"/></svg>');
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 主容器样式 - 毛玻璃效果 */
+.glass-container {
+    max-width: 800px;
+    width: 95%;
+    background: var(--surface);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border-radius: var(--radius);
+    padding: 3rem;
+    box-shadow: 
+        0 12px 40px rgba(0,0,0,0.25),
+        inset 0 2px 0 rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    position: relative;
+    overflow: hidden;
+    transform: perspective(1000px);
+    will-change: transform;
+}
+
+/* 动态流光边框样式 */
+.glass-container::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient);
+    z-index: -1;
+    border-radius: var(--radius);
+    animation: borderFlow 8s linear infinite;
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+@keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 头部样式 */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+/* 图标样式 */
+.header-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    filter: drop-shadow(0 0 12px rgba(139,92,246,0.3));
+    transition: transform 0.3s ease;
+}
+
+/* 图标悬停效果 */
+.header:hover .header-icon {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* 目标URL显示区域样式 */
+.target-url {
+    padding: 1.2rem;
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    margin: 2rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    word-break: break-all;
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: background 0.3s ease;
+}
+
+/* 法律条款滚动区域样式 */
+.legal-scroll {
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: 1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+/* 条款内容样式 */
+.clause {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    background: linear-gradient(145deg, 
+        rgba(30,41,59,0.6), 
+        rgba(15,23,42,0.4));
+    border-radius: 12px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* 条款悬停效果 */
+.clause:hover {
+    transform: translateX(10px);
+}
+
+/* 按钮通用样式 */
+.action-btn {
+    padding: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+/* 确认按钮样式 */
+.confirm-btn {
+    background: var(--gradient);
+    color: white;
+    box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+}
+
+/* 取消按钮样式 */
+.cancel-btn {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    color: var(--text);
+    backdrop-filter: blur(4px);
+}
+
+/* 按钮悬停效果 */
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    filter: brightness(1.1);
+}
+
+/* 加载提示样式 */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 加载动画样式 */
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #a78bfa;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

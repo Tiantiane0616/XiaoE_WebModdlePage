@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全跳转确认 - Tiantiane0616</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="glass-container">
+        <div class="header">
+            <i class="ri-shield-star-line header-icon"></i>
+            <h1>安全访问确认</h1>
+        </div>
+
+        <div class="target-url" id="targetUrl"></div>
+
+        <div class="legal-scroll">
+            <div class="clause">
+                根据《中华人民共和国网络安全法》第四十一条规定，您即将离开由 tiantiane0616.github.io（以下简称"本站"）运营的网站，访问第三方独立运营的互联网资源。继续操作前请确认：
+            </div>
+
+            <div class="clause">
+                <strong>责任声明：</strong>
+                <ol>
+                    <li>目标网站的内容、隐私政策、信息安全措施及商业行为均不受本站控制或认可</li>
+                    <li>第三方平台可能存在的风险包括但不限于：网络钓鱼、恶意软件、虚假信息、违法内容传播等</li>
+                    <li>建议通过 WHOIS 查询验证域名注册信息，确认网站主体的真实性</li>
+                </ol>
+            </div>
+
+            <div class="clause">
+                <strong>用户义务：</strong>
+                <ul>
+                    <li>请勿在第三方网站提交敏感个人信息（包括：支付凭证、身份证号、生物特征等）</li>
+                    <li>如发现可疑行为，请立即终止操作并向国家互联网应急中心（CNCERT）报告</li>
+                    <li>未成年人应在监护人指导下使用外部链接服务</li>
+                </ul>
+            </div>
+
+            <div class="clause">
+                <strong>免责范围：</strong>
+                本站对以下情况不承担任何法律责任：
+                <ul>
+                    <li>因第三方网站漏洞导致的个人信息泄露</li>
+                    <li>通过跳转链接获得的商品/服务质量问题</li>
+                    <li>恶意软件感染造成的设备损坏或数据丢失</li>
+                    <li>虚假信息诱导产生的经济损失</li>
+                </ul>
+            </div>
+
+            <div class="clause">
+                <strong>技术说明：</strong>
+                <ul>
+                    <li>本页面不会收集您的跳转行为数据</li>
+                    <li>自动跳转倒计时已禁用以确保充分阅读时间</li>
+                    <li>链接安全性检测基于 VirusTotal API v3（静态分析）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="action-grid">
+            <button class="action-btn cancel-btn" aria-label="安全返回" onclick="cancelRedirect()">
+                <i class="ri-arrow-left-line"></i>
+                安全返回
+            </button>
+            <button class="action-btn confirm-btn" aria-label="确认跳转" onclick="proceedRedirect()">
+                <i class="ri-external-link-line"></i>
+                确认跳转
+            </button>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
